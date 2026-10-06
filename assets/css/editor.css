@@ -1,0 +1,41 @@
+/*
+ * Noura — block editor canvas tweaks.
+ * Loaded only inside the editor via enqueue_block_editor_assets().
+ */
+
+/* Give the editor canvas the same paper background as the front end. */
+.editor-styles-wrapper {
+	background-color: var(--wp--preset--color--paper);
+	color: var(--wp--preset--color--ink);
+	font-family: var(--wp--preset--font-family--body);
+}
+
+/* Card block style preview in the editor. */
+.editor-styles-wrapper .is-style-card {
+	border-radius: 14px;
+	box-shadow: 0 6px 20px -8px rgba(11, 20, 38, 0.18);
+}
+
+/* Shadow button style preview. */
+.editor-styles-wrapper .is-style-shadow .wp-element-button {
+	box-shadow: 0 12px 28px -12px rgba(11, 20, 38, 0.35);
+}
+
+/* Amber outline button style preview. */
+.editor-styles-wrapper .is-style-outline-amber .wp-element-button {
+	background: transparent;
+	border: 2px solid var(--wp--preset--color--amber);
+	color: var(--wp--preset--color--ink);
+}
+
+/* Framed image style preview. */
+.editor-styles-wrapper .is-style-framed img {
+	border-radius: 14px;
+	box-shadow: 0 18px 40px -18px rgba(11, 20, 38, 0.28);
+}
+
+/* Large quote style preview. */
+.editor-styles-wrapper .is-style-large {
+	font-size: 1.5rem;
+	line-height: 1.45;
+}
