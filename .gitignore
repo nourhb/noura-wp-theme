@@ -1,0 +1,32 @@
+# WordPress theme build artifacts
+screenshot.png
+*.log
+
+# macOS / Windows metadata
+.DS_Store
+Thumbs.db
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node tooling (if you ever add a build step)
+node_modules/
+dist/
+package-lock.json
+yarn.lock
+
+# Composer
+vendor/
+composer.lock
+
+# Environment and secrets
+.env
+.env.local
+
+# Archives
+*.zip
+*.tar.gz

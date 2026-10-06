@@ -1,0 +1,358 @@
+/*
+Theme Name: Noura
+Theme URI: https://github.com/Nourhb/noura-wp-theme
+Author: Nour El Houda Bouajila
+Author URI: https://nour-el-houda-bouajila.rf.gd/
+Description: Noura is an elegant, modern block theme built for Full Site Editing. A refined editorial design with a deep-ink palette, warm amber accents, and generous whitespace — perfect for portfolios, agencies, freelancers, and blogs that want to look sharp out of the box. Includes 11 custom block patterns, 2 style variations, responsive templates, and a complete design system in theme.json.
+Version: 1.1.0
+Requires at least: 6.4
+Tested up to: 6.9
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: noura
+Tags: blog, portfolio, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, block-styles, rtl-language-support, sticky-post, threaded-comments, translation-ready, wide-blocks
+*/
+
+/*
+ * Noura — front-end only styles.
+ * The design system (colors, fonts, spacing) lives in theme.json.
+ * These rules cover polish that theme.json cannot: hovers, transitions,
+ * focus states, and small accessibility helpers.
+ */
+
+/* Smooth, tasteful transitions on interactive elements. */
+a,
+button,
+.wp-block-button__link,
+.wp-block-navigation a {
+	transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
+		border-color 0.2s ease-in-out, box-shadow 0.25s ease-in-out,
+		transform 0.25s ease-in-out;
+}
+
+/* Button hover lift. */
+.wp-block-button .wp-block-button__link:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 24px -10px rgba(11, 20, 38, 0.35);
+}
+
+/* Card-style groups lift on hover. */
+.noura-card {
+	transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+.noura-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 18px 40px -18px rgba(11, 20, 38, 0.28);
+}
+
+/* Gallery / portfolio images: gentle zoom on hover. */
+.wp-block-gallery .wp-block-image img,
+.noura-zoom img {
+	transition: transform 0.4s ease-in-out;
+}
+.wp-block-gallery .wp-block-image:hover img,
+.noura-zoom:hover img {
+	transform: scale(1.04);
+}
+
+/* Accessible focus outline. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+	outline: 2px solid var(--wp--preset--color--amber, #d9a441);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+/* Skip link styling. */
+.skip-link.screen-reader-text:focus {
+	background: var(--wp--preset--color--ink, #0b1426);
+	color: #fff;
+	padding: 0.75rem 1.25rem;
+	z-index: 100000;
+}
+
+/* Keep long words from breaking layouts. */
+.entry-content,
+.wp-block-post-content {
+	overflow-wrap: break-word;
+}
+
+/* Tidy up default list spacing inside content. */
+.wp-block-post-content ul,
+.wp-block-post-content ol {
+	padding-inline-start: 1.5em;
+}
+
+/* Blockquote accent. */
+.wp-block-quote {
+	border-inline-start: 3px solid var(--wp--preset--color--amber, #d9a441);
+}
+
+/* Search block polish. */
+.wp-block-search__input {
+	border-radius: 8px;
+}
+
+/* Responsive tweaks. */
+@media (max-width: 781px) {
+	.noura-hero-buttons {
+		flex-direction: column;
+		align-items: stretch;
+	}
+}
+
+/* ============================================================
+ * Noura 1.1.0 — micro-polish
+ * ============================================================ */
+
+/* Smooth anchor scrolling. */
+html {
+	scroll-behavior: smooth;
+}
+
+/* Warm text selection. */
+::selection {
+	background: var(--wp--preset--color--amber, #d9a441);
+	color: var(--wp--preset--color--ink, #0b1426);
+}
+
+/* Screen-reader-only text (pairs with the skip link). */
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+.skip-link.screen-reader-text:focus {
+	clip: auto;
+	clip-path: none;
+	height: auto;
+	width: auto;
+	display: block;
+	top: 0.75rem;
+	left: 0.75rem;
+	text-decoration: none;
+}
+
+/* Button hover shine sweep. */
+.wp-block-button__link {
+	position: relative;
+	overflow: hidden;
+}
+.wp-block-button__link::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -80%;
+	width: 45%;
+	height: 100%;
+	background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+	transform: skewX(-18deg);
+	transition: left 0.55s ease;
+	pointer-events: none;
+}
+.wp-block-button__link:hover::after {
+	left: 130%;
+}
+
+/* Hero entrance animation. */
+@keyframes noura-rise {
+	from {
+		opacity: 0;
+		transform: translateY(26px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+.noura-entrance > * {
+	animation: noura-rise 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.noura-entrance > *:nth-child(1) { animation-delay: 0.05s; }
+.noura-entrance > *:nth-child(2) { animation-delay: 0.15s; }
+.noura-entrance > *:nth-child(3) { animation-delay: 0.25s; }
+.noura-entrance > *:nth-child(4) { animation-delay: 0.35s; }
+
+/* Logo marquee. */
+.noura-marquee {
+	overflow: hidden;
+	mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+	-webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.noura-marquee-track {
+	display: flex;
+	gap: 3.5rem;
+	width: max-content;
+	animation: noura-marquee 30s linear infinite;
+}
+.noura-marquee-track span {
+	font-family: var(--wp--preset--font-family--display, Georgia, serif);
+	font-size: 1.4rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	color: var(--wp--preset--color--mist, #8a94a8);
+	white-space: nowrap;
+}
+.noura-marquee:hover .noura-marquee-track {
+	animation-play-state: paused;
+}
+@keyframes noura-marquee {
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+/* FAQ disclosure items. */
+.noura-faq-item {
+	border: 1px solid var(--wp--preset--color--cream, #f1e9da);
+	border-radius: 12px;
+	background: var(--wp--preset--color--white, #fff);
+	padding: 1.25rem 1.5rem;
+	box-shadow: 0 6px 20px -8px rgba(11, 20, 38, 0.12);
+}
+.noura-faq-item summary {
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 1.05rem;
+	list-style: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+.noura-faq-item summary::-webkit-details-marker {
+	display: none;
+}
+.noura-faq-item summary::after {
+	content: "+";
+	flex-shrink: 0;
+	width: 1.75rem;
+	height: 1.75rem;
+	border-radius: 50%;
+	background: var(--wp--preset--color--cream, #f1e9da);
+	color: var(--wp--preset--color--ink, #0b1426);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.25rem;
+	line-height: 1;
+	transition: transform 0.25s ease, background-color 0.25s ease;
+}
+.noura-faq-item[open] summary::after {
+	transform: rotate(45deg);
+	background: var(--wp--preset--color--amber, #d9a441);
+}
+.noura-faq-item p {
+	margin-top: 0.9rem;
+	margin-bottom: 0.25rem;
+	color: var(--wp--preset--color--slate, #3c4a63);
+	line-height: 1.7;
+}
+
+/* Stat numbers. */
+.noura-stat-number {
+	font-variant-numeric: tabular-nums;
+}
+
+/* Back-to-top button. */
+.noura-back-to-top {
+	position: fixed;
+	right: 1.5rem;
+	bottom: 1.5rem;
+	z-index: 99990;
+	width: 3rem;
+	height: 3rem;
+	border: 0;
+	border-radius: 50%;
+	background: var(--wp--preset--color--ink, #0b1426);
+	color: var(--wp--preset--color--paper, #faf7f1);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(12px);
+	transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, background-color 0.25s ease;
+	box-shadow: 0 12px 28px -10px rgba(11, 20, 38, 0.45);
+}
+.noura-back-to-top.is-visible {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+.noura-back-to-top:hover {
+	background: var(--wp--preset--color--amber, #d9a441);
+	color: var(--wp--preset--color--ink, #0b1426);
+}
+.noura-back-to-top svg {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+/* List markers pick up the accent color. */
+.wp-block-list li::marker {
+	color: var(--wp--preset--color--amber, #d9a441);
+}
+
+/* Subtle zebra striping for tables. */
+.wp-block-table tbody tr:nth-child(even) {
+	background-color: color-mix(in srgb, var(--wp--preset--color--ink, #0b1426) 4%, transparent);
+}
+
+/* Print: keep it clean and readable. */
+@media print {
+	.wp-block-template-part:has(.wp-block-navigation),
+	.noura-back-to-top,
+	.wp-block-buttons,
+	.wp-block-search,
+	.noura-marquee {
+		display: none !important;
+	}
+	body {
+		background: #fff !important;
+		color: #000 !important;
+	}
+	a {
+		color: #000 !important;
+		text-decoration: underline;
+	}
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+	.noura-entrance > * {
+		animation: none;
+		opacity: 1;
+		transform: none;
+	}
+	.noura-marquee-track {
+		animation: none;
+		flex-wrap: wrap;
+		width: auto;
+	}
+	.wp-block-button__link::after {
+		display: none;
+	}
+}
